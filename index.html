@@ -499,48 +499,23 @@
     }
 
     @media (max-width: 900px) {
-  .workspace {
-    grid-template-columns: 1fr;
-    padding: 14px;
-    gap: 14px;
-  }
+      .workspace {
+        grid-template-columns: 1fr;
+      }
 
-  .panel {
-    min-height: auto;
-    width: 100%;
-  }
+      textarea {
+        min-height: 280px;
+      }
 
-  .panel-body {
-    padding: 14px;
-    overflow-x: hidden;
-  }
+      .panel {
+        min-height: auto;
+      }
 
-  textarea {
-    min-height: 220px;
-    font-size: 16px;
-  }
-
-  .summary-content {
-    font-size: 16px;
-    line-height: 1.7;
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .hero p,
-  .typing-line {
-    font-size: 16px;
-  }
-
-  .toolbar {
-    padding: 14px;
-  }
-
-  select,
-  button {
-    width: 100%;
-  }
-}
+      .hero p,
+      .typing-line {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -713,49 +688,19 @@
   if (styleText.includes("Деловой")) style = "scientific"; // можно потом расширить
 
   try {
-  const response = await fetch(
-    "https://ТВОЙ-АКТУАЛЬНЫЙ-ngrok-url/summarize",
-    {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        text: text,
-        style: style,
-        format: formatText,
-        compression: compressionText
-      })
-    }
-  );
+  const response = await fetch("https://willpower-lego-paternity.ngrok-free.dev/summarize", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      text: text,
+      style: style,
+      format: formatText,
+      compression: compressionText
+    })
+  });
 
-  const raw = await response.text();
-
-  console.log(raw);
-
-  const data = JSON.parse(raw);
-
-  if (!data.summary) {
-    throw new Error("Пустой ответ");
-  }
-
-  document.getElementById("summaryText").innerHTML = `
-    <div class="tags">
-      <div class="tag">Стиль: ${styleText.toLowerCase()}</div>
-      <div class="tag">Формат: ${formatText.toLowerCase()}</div>
-      <div class="tag">Сжатие: ${compressionText.toLowerCase()}</div>
-    </div>
-
-    <h3>Краткий конспект</h3>
-
-    <div>${data.summary.replace(/\n/g, "<br>")}</div>
-  `;
-
-} catch (err) {
-  console.error(err);
-  alert("Ошибка: " + err.message);
-}
   console.log("STATUS:", response.status);
 
   const data = await response.json(); // ← обратно можно
