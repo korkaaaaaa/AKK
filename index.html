@@ -688,7 +688,7 @@
   if (styleText.includes("Деловой")) style = "scientific"; // можно потом расширить
 
   try {
-  const response = await fetch("http://localhost:5000/summarize", {
+  const response = await fetch("https://willpower-lego-paternity.ngrok-free.dev", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
