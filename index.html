@@ -499,23 +499,48 @@
     }
 
     @media (max-width: 900px) {
-      .workspace {
-        grid-template-columns: 1fr;
-      }
+  .workspace {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 14px;
+  }
 
-      textarea {
-        min-height: 280px;
-      }
+  .panel {
+    min-height: auto;
+    width: 100%;
+  }
 
-      .panel {
-        min-height: auto;
-      }
+  .panel-body {
+    padding: 14px;
+    overflow-x: hidden;
+  }
 
-      .hero p,
-      .typing-line {
-        font-size: 16px;
-      }
-    }
+  textarea {
+    min-height: 220px;
+    font-size: 16px;
+  }
+
+  .summary-content {
+    font-size: 16px;
+    line-height: 1.7;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero p,
+  .typing-line {
+    font-size: 16px;
+  }
+
+  .toolbar {
+    padding: 14px;
+  }
+
+  select,
+  button {
+    width: 100%;
+  }
+}
   </style>
 </head>
 <body>
